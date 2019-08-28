@@ -35,7 +35,7 @@ class MyAtomNeuralFiltersTrainer(AtomNeuralFilterModelTrainer):
     def __init__(self, hparams):
         """Set your parameters here."""
 
-        dir_wcad_root = "../../../tools/wcad"
+        dir_wcad_root = os.path.dirname(os.environ['IDIAPTTS_ROOT']) + "/tools/wcad"
         dir_audio = os.path.join(hparams.data_dir, "wav")
         dir_lf0_labels = os.path.join(hparams.work_dir, "WORLD")
         dir_atom_features = os.path.join(hparams.work_dir, "wcad-" + "_".join(map("{:.3f}".format, hparams.thetas)))

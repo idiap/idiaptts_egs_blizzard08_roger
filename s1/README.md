@@ -32,6 +32,9 @@ Run `./05_prepare_WORLD_deltas_labels.sh full <num_workers>` to extract acoustic
 ### 6. Extract WCAD atoms
 Run `./06_prepare_atom_labels.sh full <num_workers> database/file_id_list_full.txt` to use the [WCAD](https://github.com/b-schnell/wcad) atom extractor to extract phrase and regular atoms for the **full** id list. The atoms are stored in *.atoms* files while the phrases are in the *.phrase* files. The current implementation of the WCAD atom extractor can only extract a single phrase atom, therefore it fails for very long utterances. However, the extractor creates a *wcad_file_id_list_\<voice>.txt* in the database folder which only contains the ids for which the extraction seemed to have worked. Feature files for all the samples will still be created. To remove the excluded features one can delete the feature folder and run the script with the *wcad_file_id_list_\<voice>.txt* again. A summary of warnings is saved in the feature director at *log/file_id_list_\<voice>_WARNINGS.txt*, where one can check the ids of the failed samples. For training only the *wcad_file_id_list_<voice>.txt* should be used.
 
+The following errors can be ignored:
+* `cat: ../IdiapTTS/egs/blizzard08_roger/s1/database/wcad_file_id_list_demo_block*.txt: No such file or directory`
+
 
 # Training
 Note that objective metrics and splitting of id list into test and validation sets are different from what was used for the Interspeech '18 paper. Therefore results are different, however, the models and conclusions remain the same.

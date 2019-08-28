@@ -37,7 +37,7 @@ class MyPhraseAtomNeuralFiltersTrainer(PhraseAtomNeuralFilterModelTrainer):
 
         hparams_flat = hparams_phrase.hparams_flat
 
-        dir_wcad_root = "../../../tools/wcad"
+        dir_wcad_root = os.path.dirname(os.environ['IDIAPTTS_ROOT']) + "/tools/wcad"
         dir_audio = os.path.join(hparams_phrase.data_dir, "wav")
         dir_lf0_labels = os.path.join(hparams_phrase.work_dir, "WORLD")
         dir_atom_features = os.path.join(hparams_phrase.work_dir,

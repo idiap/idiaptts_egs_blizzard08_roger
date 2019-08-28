@@ -36,7 +36,7 @@ class MyAtomTrainer(AtomVUVDistPosModelTrainer):
     #
     def __init__(self, hparams):
         """Set your parameters here."""
-        dir_wcad_root = "../../../tools/wcad"
+        dir_wcad_root = os.path.dirname(os.environ['IDIAPTTS_ROOT']) + "/tools/wcad"
         # dir_audio = os.path.join(hparams.data_dir, "wav")
         dir_lf0_labels = os.path.join(hparams.work_dir, "WORLD")
         # theta_step = abs(hparams.thetas[1] - hparams.thetas[0])

@@ -36,7 +36,7 @@ class MyAtomBaseTrainer(AtomModelTrainer):
     #
     def __init__(self, hparams):
         """Set your parameters here."""
-        dir_wcad_root = "../../../tools/wcad"
+        dir_wcad_root = os.path.dirname(os.environ['IDIAPTTS_ROOT']) + "/tools/wcad"
         # theta_step = abs(hparams.thetas[1]-hparams.thetas[0])
         # dir_atom_features = os.path.join(hparams.work_dir, "wcad-" + "_".join(map("{:.3f}".format, (hparams.thetas[0], hparams.thetas[-1] + theta_step, theta_step))))
         dir_atom_features = os.path.join(hparams.work_dir, "wcad-" + "_".join(map("{:.3f}".format, hparams.thetas)))

@@ -39,10 +39,15 @@ readonly PROGNAME=$(basename $0)
 readonly PROGDIR=$(readlink -m $(dirname $0))
 readonly ARGS="$@"
 
+if [ -z "${IDIAPTTS_ROOT}" ]; then
+  echo "IDIAPTTS_ROOT variable not set. Please run 'source cmd.sh' first."
+  exit 1
+fi
+
 # Fixed paths.
-dir_src=$(realpath "../../../idiaptts/src/")
-dir_tools=$(realpath "../../../tools/")
-dir_misc=$(realpath "../../../idiaptts/misc//")
+dir_src="${IDIAPTTS_ROOT}/src/"
+dir_tools="${IDIAPTTS_ROOT}/../tools/"
+dir_misc="${IDIAPTTS_ROOT}/misc"
 dir_data=$(realpath "database/")
 
 log()
@@ -171,7 +176,7 @@ done
 
 echo "Generate MFCCs..."
 ./${cpu_1d_cmd} JOB=1:${num_blocks} ${dir_logs}/${name_file_id_list}_blockJOB.log \
-        ${dir_misc}/alignment/state_align/gen_mfcc.py \
+python  ${dir_misc}/alignment/state_align/gen_mfcc.py \
                 --dir_wav ${dir_data}/wav/ \
                 --dir_mfcc ${dir_mfcc} \
                 --file_id_list ${dir_labels}/${name_file_id_list}_blockJOB

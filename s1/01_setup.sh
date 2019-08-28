@@ -45,8 +45,13 @@ readonly PROGNAME=$(basename $0)
 readonly PROGDIR=$(readlink -m $(dirname $0))
 readonly ARGS="$@"
 
+if [ -z "${IDIAPTTS_ROOT}" ]; then
+  echo "IDIAPTTS_ROOT variable not set. Please run 'source cmd.sh' first."
+  exit 1
+fi
+
 # Fixed paths.
-dir_src=$(realpath "../../../idiaptts/src/")
+dir_src="${IDIAPTTS_ROOT}/src/"
 
 # Parameter extraction.
 silence_removal=true # Default parameter.
