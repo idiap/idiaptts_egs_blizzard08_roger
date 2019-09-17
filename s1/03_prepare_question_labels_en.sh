@@ -45,7 +45,6 @@ fi
 
 # Fixed paths.
 dir_data_prep="${IDIAPTTS_ROOT}/src/data_preparation/"
-dir_tools="${IDIAPTTS_ROOT}/../tools/"
 dir_misc="${IDIAPTTS_ROOT}/misc/"
 dir_data=$(realpath "database/")
 
@@ -53,7 +52,7 @@ dir_data=$(realpath "database/")
 voice=${1:-"demo"}
 num_workers=${2:-"1"}  # Default number of workers is one.
 file_id_list=${3:-"${dir_data}/file_id_list_${voice}.txt"}
-file_questions=${4:-"${dir_tools}/tts_frontend/questions/questions-en-radio_dnn_416.hed"}
+file_questions=${4:-"${IDIAPTTS_ROOT}/scripts/tts_frontend/questions/questions-en-radio_dnn_416.hed"}
 
 # Fixed path with parameters.
 dir_labels=$(realpath "experiments/${voice}/labels/label_state_align/")
@@ -103,8 +102,13 @@ file_list_min_max=()
 #file_list_mean_std=()
 for (( b=1; b <= $num_blocks; b++ )); do
     file_path="${dir_questions}"/${name_file_id_list}_block${b}-min-max.bin
+    iter=0
     while [ ! -f ${file_path} ]; do  # Wait until normalisation file is created by OS.
         sleep 2
+        ((iter++))
+        if [ "$iter" -ge 10 ]; then
+            break
+        fi
     done
     file_list_min_max+=(${file_path})
     #file_list_mean_std+=("${dir_questions}"/${name_file_id_list}_block${b}-mean-std_dev.bin)

@@ -35,7 +35,7 @@ if [ "${queue}" != "cpu" ]; then
 fi
 
 name="${model_name}"
-grid_args="-l ${queue} -S $(which python3) -v PYTHONPATH -cwd"
+grid_args="-l ${queue} -S $(which python3) -v PYTHONPATH -v IDIAPTTS_ROOT -cwd"
 
 if [ "${queue}" == "cpu" ]; then  # [ == ] literal matching
     $(which python3) BaselineTrainer.py
