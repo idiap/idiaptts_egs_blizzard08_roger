@@ -3,7 +3,7 @@ This repository contains database specific code for the database used in the Bli
 Contact: <bastian.schnell@idiap.ch>
 
 ## Installation
-To use this repository, please install IdiapTTS first by following its installation procedure in the main repository at [https://github.com/idiap/IdiapTTS](https://github.com/idiap/IdiapTTS).
+To use this repository, please install IdiapTTS first by following its installation procedure in the main repository at https://github.com/idiap/IdiapTTS.
 
 ## Publications
 #### Interspeech '18: A Neural Model to Predict Parameters for a Generalized Command Response Model of Intonation

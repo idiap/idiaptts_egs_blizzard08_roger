@@ -57,6 +57,7 @@ voice=${1:-"demo"}
 num_workers=${2:-"1"}  # Default number of workers is one.
 file_id_list=${3:-"${dir_data}/file_id_list_${voice}.txt"}
 num_coded_sps=${4:-"60"}  # Default dimension of frequency features. Should depend on sampling frequency.
+sp_type="mgc"
 
 # Fixed path with parameters.
 dir_audio="${dir_data}/wav/"
@@ -101,11 +102,12 @@ echo "Generate WORLD features..."
                 --dir_audio ${dir_audio} \
                 --dir_out ${dir_out} \
                 --file_id_list ${dir_out}/${name_file_id_list}_blockJOB \
+                --sp_type ${sp_type} \
                 --num_coded_sps ${num_coded_sps}
 
 
 # Combine normalisation parameters of all blocks.
-for feature in "mgc${num_coded_sps}" "lf0" "bap"; do
+for feature in "${sp_type}${num_coded_sps}" "lf0" "bap"; do
     #mkdir -p "${dir_out}"/${feature}/
     #file_list_min_max=()
     file_list_mean_std=()
